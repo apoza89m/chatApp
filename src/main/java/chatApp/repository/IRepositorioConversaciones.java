@@ -1,6 +1,7 @@
 package chatApp.repository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import chatApp.exceptions.ConversacionException;
 import chatApp.model.Conversacion;
@@ -17,19 +18,20 @@ public interface IRepositorioConversaciones {
 	 * su tipo de agente, si existieran varias --> devuelve la primera si no existe
 	 * ninguna --> devuelve excepción
 	 **/
-	public Conversacion getConversacion(LocalDate fecha, TipoAgente tipo, String pregunta) throws ConversacionException;
+	public Conversacion getConversacion(LocalDate fecha, TipoAgente tipos, String pregunta)
+			throws ConversacionException;
 
 	/**
 	 * Operación que devuelve cierto si el repositorio una conversación
 	 **/
-	public boolean contieneConversacionConversacion(Conversacion conversacion);
+	public boolean contieneConversacion(Conversacion conversacion);
 
 	/**
 	 * Operación que elimina una conversación a partir de su fecha y de su tipo de
 	 * agente, si existieran varias --> elimina la primera si no existe ninguna -->
 	 * devuelve excepción
 	 **/
-	public void eliminaConversacion(LocalDate fecha, TipoAgente tipo, String pregunta) throws ConversacionException;
+	public void eliminaConversacion(LocalDate fecha, TipoAgente tipo) throws ConversacionException;
 
 	/**
 	 * Incrementa el número de valoraciones en uno para un una conversacion a partir
@@ -37,6 +39,8 @@ public interface IRepositorioConversaciones {
 	 * del tipo ConversacionnException si encuentra varias, la incrementa en la
 	 * primera
 	 */
-	public void incrementaNumeroValoraciones(LocalDate fecha, TipoAgente tipo, String pregunta, double valoracion)
+	public void incrementaNumeroValoraciones(LocalDate fecha, TipoAgente tipo, String pregunta)
 			throws ConversacionException;
+
+	public List<Conversacion> getConversaciones();
 }

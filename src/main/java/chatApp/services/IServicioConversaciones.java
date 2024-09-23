@@ -7,7 +7,8 @@ import chatApp.model.Conversacion;
 import chatApp.model.Conversacion.TipoAgente;
 
 public interface IServicioConversaciones {
-	public void registraNuevaConveracion(TipoAgente tipo, String pregunta, String respuesta);
+
+	public void registraNuevaConversacion(TipoAgente tipo, String pregunta, String respuesta);
 
 	public Conversacion getRecuperaConversacion(TipoAgente tipo, String pregunta, LocalDate fecha);
 
@@ -17,5 +18,9 @@ public interface IServicioConversaciones {
 
 	public double getValoracionMediaParaHumanos();
 
-	public double getValoracionMedidaParaBots();
+	public double getValoracionMediaParaBots();
+
+
+
+
 }
