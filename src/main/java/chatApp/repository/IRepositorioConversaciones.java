@@ -1,7 +1,7 @@
 package chatApp.repository;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 import chatApp.exceptions.ConversacionException;
 import chatApp.model.Conversacion;
@@ -42,5 +42,5 @@ public interface IRepositorioConversaciones {
 	public void incrementaNumeroValoraciones(LocalDate fecha, TipoAgente tipo, String pregunta)
 			throws ConversacionException;
 
-	public List<Conversacion> getConversaciones();
+	public Set<Conversacion> getConversaciones();
 }

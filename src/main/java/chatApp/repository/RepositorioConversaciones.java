@@ -1,18 +1,18 @@
 package chatApp.repository;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import chatApp.exceptions.ConversacionException;
 import chatApp.model.Conversacion;
 import chatApp.model.Conversacion.TipoAgente;
 
 public class RepositorioConversaciones implements IRepositorioConversaciones {
-	private List<Conversacion> conversaciones;
+	private Set<Conversacion> conversaciones;
 
 	public RepositorioConversaciones() {
-		conversaciones = new ArrayList<>();
+		conversaciones = new TreeSet<>();
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class RepositorioConversaciones implements IRepositorioConversaciones {
 	}
 
 	@Override
-	public List<Conversacion> getConversaciones() {
+	public Set<Conversacion> getConversaciones() {
 		return conversaciones;
 	}
 }

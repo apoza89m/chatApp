@@ -1,8 +1,8 @@
 package chatApp.services;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.OptionalDouble;
+import java.util.Set;
 
 import chatApp.exceptions.ConversacionException;
 import chatApp.model.Conversacion;
@@ -55,7 +55,7 @@ public class ServicioConversaciones implements IServicioConversaciones {
 
 	@Override
 	public double getValoracionMediaParaHumanos() {
-		List<Conversacion> conversaciones = repositorio.getConversaciones();
+		Set<Conversacion> conversaciones = repositorio.getConversaciones();
 		OptionalDouble media = conversaciones.stream().filter(c -> c.getTipoAgente() == TipoAgente.HUMANO)
 				.mapToDouble(Conversacion::getNumeroValoracionesPositivas).average();
 		return media.orElse(0);
@@ -63,7 +63,7 @@ public class ServicioConversaciones implements IServicioConversaciones {
 
 	@Override
 	public double getValoracionMediaParaBots() {
-		List<Conversacion> conversaciones = repositorio.getConversaciones();
+		Set<Conversacion> conversaciones = repositorio.getConversaciones();
 		OptionalDouble media = conversaciones.stream().filter(c -> c.getTipoAgente() == TipoAgente.IA)
 				.mapToDouble(Conversacion::getNumeroValoracionesPositivas).average();
 		return media.orElse(0);

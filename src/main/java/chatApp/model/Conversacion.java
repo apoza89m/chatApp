@@ -1,9 +1,11 @@
 package chatApp.model;
 
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.Objects;
 import java.util.Random;
 
-public class Conversacion {
+public class Conversacion implements Comparable<Conversacion>, Comparator<Conversacion> {
 
 	private String id;
 	private String pregunta;
@@ -27,6 +29,23 @@ public class Conversacion {
 		this.id = calculaId();
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Conversacion other = (Conversacion) obj;
+		return Objects.equals(id, other.id);
+	}
+
 	public Conversacion(TipoAgente tipoAgente, String pregunta, String respuesta, LocalDate fecha, int valoracion) {
 		this.fechaConversacion = fecha;
 		this.tipoAgente = tipoAgente;
@@ -39,8 +58,16 @@ public class Conversacion {
 	public String calculaId() {
 		String fechaString = fechaConversacion.toString().replace("-", "");
 		Random random = new Random();
-		int numeroAleatorio = random.nextInt(9000) + 1000;
+		// 0 - 999
+		int numeroAleatorio = random.nextInt(1000);
 		return fechaString + numeroAleatorio;
+	}
+
+	@Override
+	public String toString() {
+		return "Conversacion [id=" + id + ", tipoAgente=" + tipoAgente + ", pregunta=" + pregunta + ", respuesta="
+				+ respuesta + ", valoracion=" + valoracion + ", fechaConversacion=" + fechaConversacion
+				+ ", numeroValoracionesPositivas=" + numeroValoracionesPositivas + "]";
 	}
 
 	public String getId() {
@@ -97,6 +124,22 @@ public class Conversacion {
 
 	public void setNumeroValoracionesPositivas(int numeroValoracionesPositivas) {
 		this.numeroValoracionesPositivas = numeroValoracionesPositivas;
+	}
+
+	@Override
+	public int compareTo(Conversacion o) {
+		int tipoComparacion = o.getTipoAgente().compareTo(this.tipoAgente);
+		// Si tienen el mismo tipo de agente, comparamos por ID
+		if (tipoComparacion == 0) {
+			return this.id.compareTo(o.id);
+		}
+		return tipoComparacion;
+
+	}
+
+	@Override
+	public int compare(Conversacion o1, Conversacion o2) {
+		return o2.getTipoAgente().compareTo(o1.getTipoAgente());
 	}
 
 }
