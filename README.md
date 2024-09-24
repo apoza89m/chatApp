@@ -85,8 +85,8 @@ public interface IRepositorioConversaciones {
   }
 
 Consideraciones de Persistencia
-Persistencia: Este modelo no incluye persistencia de datos. Para implementar la persistencia, podrías considerar utilizar una base de datos (relacional o no relacional) donde almacenar las conversaciones.
+Persistencia: Este modelo no incluye persistencia de datos. Para implementar la persistencia, podemos utilizar una base de datos (relacional o no relacional) donde almacenar las conversaciones.
 
 Modelo E/R:
 Conversación: con atributos como id, fecha, tipoAgente, pregunta, respuesta, numeroValoraciones, y sumaValoraciones.
-TipoAgente: que podría ser una tabla de referencia.
+TipoAgente: tabla de referencia.
